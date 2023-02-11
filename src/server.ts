@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
 import userRouter from "./routes/user.router";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -20,6 +21,7 @@ db.once("open", () => {
 
 //? Configuration Server
 app.use(morgan("dev"));
+app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 //? Routes
-app.use("/users/", userRouter);
+app.use("/users", userRouter);
 app.use((req, res) => {
     return res
         .status(404)

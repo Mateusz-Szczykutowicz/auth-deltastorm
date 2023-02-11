@@ -4,6 +4,7 @@ interface ResponseI {
     message: string;
     status: 200;
     data?: any;
+    request?: any;
 }
 
 export type exportFunction = (req: Request, res: Response<ResponseI>) => void;
